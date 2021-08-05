@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Payoneer</string>
+    <string name="something_wrong">Something Went Wrong</string>
+    <string name="connection_timeout">connection timeout</string>
+    <string name="nointernet">not internet</string>
+    <string name="server_not_responding">serve not responding</string>
+    <string name="parse_error">parsing error</string>
+</resources>

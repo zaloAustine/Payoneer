@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Payoneer">
         <activity android:name=".payment_options.ui.MainActivity"
-            android:theme="@style/Theme.MaterialComponents.NoActionBar">
+
+            android:theme="@style/Theme.PayoneerBar.NoAction">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

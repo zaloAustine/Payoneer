@@ -37,8 +37,6 @@ public class MainActivity extends AppCompatActivity implements SelectionResult {
         viewModel = new ViewModelProvider(this).get(PaymentOptionViewModel.class);
         paymentOptionList = new ArrayList<>();
 
-        setTitle("Select Payment Method");
-
         viewModel.getPaymentOptions();
         observePaymentOptions();
 

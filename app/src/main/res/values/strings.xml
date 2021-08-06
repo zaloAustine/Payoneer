@@ -5,4 +5,5 @@
     <string name="nointernet">not internet</string>
     <string name="server_not_responding">serve not responding</string>
     <string name="parse_error">parsing error</string>
+    <string name="payment_methods">Payment Methods</string>
 </resources>

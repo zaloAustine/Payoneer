@@ -13,6 +13,7 @@ import com.zalocoders.payoneer.payment_options.viewmodel.PaymentOptionViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import dagger.hilt.android.AndroidEntryPoint;
 
@@ -32,7 +33,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         viewModel = new ViewModelProvider(this).get(PaymentOptionViewModel.class);
-
         paymentOptionList  = new ArrayList<>();
 
 

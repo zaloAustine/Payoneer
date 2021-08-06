@@ -5,25 +5,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FBFBFB"
     tools:context=".payment_options.ui.MainActivity">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appBar"
+    <TextView
+        android:id="@+id/label"
+        style="@style/TextAppearance.AppCompat.Headline"
         android:layout_width="match_parent"
-        android:background="@color/white"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="12dp"
+        android:fontFamily="@font/work_sans"
+        android:text="@string/payment_methods"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_height="wrap_content">
-
-        <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/toolbar"
-            app:title="Payment Methods"
-            android:layout_width="match_parent"
-            app:titleTextAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:layout_height="wrap_content"/>
-
-    </com.google.android.material.appbar.AppBarLayout>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/paymentOptionRecyclerview"
@@ -32,6 +28,6 @@
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appBar" />
+        app:layout_constraintTop_toBottomOf="@+id/label" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

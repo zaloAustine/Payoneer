@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-
 import com.zalocoders.payoneer.data.models.payment_options.Applicable;
 import com.zalocoders.payoneer.databinding.ActivityMainBinding;
 import com.zalocoders.payoneer.payment_options.adapters.PaymentOptionsAdapter;

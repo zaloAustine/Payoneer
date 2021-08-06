@@ -1,10 +1,12 @@
 package com.zalocoders.payoneer.payment_options.ui;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.zalocoders.payoneer.data.models.payment_options.Applicable;
@@ -33,7 +35,7 @@ public class MainActivity extends AppCompatActivity implements SelectionResult {
         setContentView(binding.getRoot());
 
         viewModel = new ViewModelProvider(this).get(PaymentOptionViewModel.class);
-        paymentOptionList  = new ArrayList<>();
+        paymentOptionList = new ArrayList<>();
 
 
         viewModel.getPaymentOptions();
@@ -51,9 +53,9 @@ public class MainActivity extends AppCompatActivity implements SelectionResult {
         });
     }
 
-    private void setUpRecyclerView(){
+    private void setUpRecyclerView() {
         binding.paymentOptionRecyclerview.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new PaymentOptionsAdapter(paymentOptionList,this);
+        adapter = new PaymentOptionsAdapter(paymentOptionList, this);
         binding.paymentOptionRecyclerview.setAdapter(adapter);
     }
 
@@ -61,5 +63,13 @@ public class MainActivity extends AppCompatActivity implements SelectionResult {
     public void paymentMethodSelected(Applicable applicable) {
         binding.proceedLyt.setVisibility(View.VISIBLE);
         binding.proceedBtn.setText(applicable.getLabel());
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getGroupId() == android.R.id.home) {
+            finish();
+        }
+        return true;
     }
 }

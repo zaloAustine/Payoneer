@@ -18,7 +18,7 @@
     <style name="Theme.PayoneerBar.NoAction" parent="Theme.MaterialComponents.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/white</item>
-        <item name="colorPrimaryVariant">@color/white</item>
+        <item name="colorPrimaryVariant">@color/teal_200</item>
         <item name="colorOnPrimary">@color/white</item>
         <item name="fontFamily">@font/work_sans</item>
         <!-- Secondary brand color. -->

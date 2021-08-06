@@ -8,36 +8,30 @@
     android:background="#FBFBFB"
     tools:context=".payment_options.ui.MainActivity">
 
-
-
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appbar"
+    <TextView
+        android:id="@+id/textView"
+        style="@style/TextAppearance.AppCompat.Medium"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="24dp"
+        android:fontFamily="@font/work_sans"
+        android:text="@string/select_a_payment_method"
+        android:textAllCaps="false"
+        android:gravity="center"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:background="@color/white"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolBar"
-            android:layout_width="match_parent"
-            app:titleTextAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:layout_height="wrap_content"
-            app:title="@string/select_a_payment_method" />
-
-    </com.google.android.material.appbar.AppBarLayout>
-
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/paymentOptionRecyclerview"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="24dp"
         app:layout_constraintBottom_toTopOf="@+id/proceedLyt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appbar" />
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
 
     <LinearLayout
@@ -59,9 +53,5 @@
             android:drawableEnd="@drawable/next"
             android:text="@string/proceed"
             app:cornerRadius="30dp" />
-
-
     </LinearLayout>
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

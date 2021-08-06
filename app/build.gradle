@@ -34,17 +34,17 @@ android {
 
     buildTypes {
         debug {
-            buildConfigField "String", "API_URL", "\"https://raw.githubusercontent.com/\""
+            buildConfigField "String", "API_URL", "\"https://raw.githubusercontent.com/optile/checkout-android/develop/shared-test/lists/\""
         }
         release {
-            buildConfigField "String", "API_URL", "\"https://raw.githubusercontent.com/\""
+            buildConfigField "String", "API_URL", "\"https://raw.githubusercontent.com/optile/checkout-android/develop/shared-test/lists/\""
         }
     }
 }
 
 dependencies {
     def nav_version = "2.3.0-beta01"
-    def room_version = "2.2.5"
+    def room_version = "2.3.0"
     def lifecycle_version = "2.3.1"
     def hilt_version = '2.38.1'
 
@@ -72,16 +72,14 @@ dependencies {
 
 
     //RxJava
-    implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
-    implementation 'io.reactivex.rxjava3:rxjava:3.0.0'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.10'
 
     // Retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
     implementation 'com.squareup.retrofit2:adapter-rxjava2:2.9.0'
     implementation 'com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.2'
-
-    //implementation "com.github.akarnokd:rxjava3-retrofit-adapter:3.0.0"
 
     // ViewModel
     implementation 'androidx.lifecycle:lifecycle-viewmodel:2.3.1'

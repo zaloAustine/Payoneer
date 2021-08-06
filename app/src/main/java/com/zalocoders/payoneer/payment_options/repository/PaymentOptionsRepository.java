@@ -1,9 +1,7 @@
-package com.zalocoders.payoneer.features.payment_options.repository;
+package com.zalocoders.payoneer.payment_options.repository;
 
-import com.zalocoders.payoneer.BuildConfig;
 import com.zalocoders.payoneer.data.models.payment_options.PaymentListResponse;
 import com.zalocoders.payoneer.data.network.ApiService;
-import com.zalocoders.payoneer.utils.Constants;
 
 import javax.inject.Inject;
 import io.reactivex.Observable;

@@ -5,20 +5,20 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import android.os.Bundle;
+import android.view.View;
 
 import com.zalocoders.payoneer.data.models.payment_options.Applicable;
 import com.zalocoders.payoneer.databinding.ActivityMainBinding;
 import com.zalocoders.payoneer.payment_options.adapters.PaymentOptionsAdapter;
+import com.zalocoders.payoneer.payment_options.adapters.SelectionResult;
 import com.zalocoders.payoneer.payment_options.viewmodel.PaymentOptionViewModel;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements SelectionResult {
 
     private ActivityMainBinding binding;
     private PaymentOptionViewModel viewModel;
@@ -53,7 +53,13 @@ public class MainActivity extends AppCompatActivity {
 
     private void setUpRecyclerView(){
         binding.paymentOptionRecyclerview.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new PaymentOptionsAdapter(paymentOptionList);
+        adapter = new PaymentOptionsAdapter(paymentOptionList,this);
         binding.paymentOptionRecyclerview.setAdapter(adapter);
+    }
+
+    @Override
+    public void paymentMethodSelected(Applicable applicable) {
+        binding.proceedLyt.setVisibility(View.VISIBLE);
+        binding.proceedBtn.setText(applicable.getLabel());
     }
 }

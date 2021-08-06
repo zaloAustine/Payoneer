@@ -5,18 +5,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.ScaleAnimation;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.RadioButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.google.android.material.card.MaterialCardView;
-import com.google.android.material.imageview.ShapeableImageView;
 import com.zalocoders.payoneer.data.models.payment_options.Applicable;
 import com.zalocoders.payoneer.databinding.PaymentOptionItemBinding;
 
@@ -27,11 +26,15 @@ public class PaymentOptionsAdapter extends RecyclerView.Adapter<PaymentOptionsAd
 
     private final ArrayList<Applicable> data;
     private int lastPosition = -1;
+    private int mSelectedItem = -1;
+    SelectionResult selectionResult;
 
 
-    public PaymentOptionsAdapter(ArrayList<Applicable> data) {
+    public PaymentOptionsAdapter(ArrayList<Applicable> data, SelectionResult selectionResult) {
         this.data = data;
+        this.selectionResult = selectionResult;
     }
+
 
     @NonNull
     @io.reactivex.annotations.NonNull
@@ -48,9 +51,8 @@ public class PaymentOptionsAdapter extends RecyclerView.Adapter<PaymentOptionsAd
         setAnimation(holder.itemView, position);
         holder.optionName.setText(applicable.getLabel());
         Glide.with(holder.imageView.getContext()).load(applicable.getLinks().getLogo()).into(holder.imageView);
-        holder.cardView.setOnClickListener(view -> {
 
-        });
+        holder.radioButton.setChecked(position == mSelectedItem);
     }
 
     @Override
@@ -69,16 +71,31 @@ public class PaymentOptionsAdapter extends RecyclerView.Adapter<PaymentOptionsAd
         }
     }
 
-    static class PaymentViewHolder extends RecyclerView.ViewHolder{
+    class PaymentViewHolder extends RecyclerView.ViewHolder{
         private final TextView optionName;
         private final ImageView imageView;
-        private final ConstraintLayout cardView;
+        private final ConstraintLayout constraintLayout;
+        private final RadioButton radioButton;
 
         public PaymentViewHolder(@NonNull @io.reactivex.annotations.NonNull PaymentOptionItemBinding binding) {
             super(binding.getRoot());
             optionName = binding.optionName;
             imageView = binding.optionImage;
-            cardView = binding.constraintLayout;
+            constraintLayout = binding.constraintLayout;
+            radioButton = binding.radioButton;
+
+            View.OnClickListener clickListener = new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mSelectedItem = getBindingAdapterPosition();
+                    notifyDataSetChanged();
+                    selectionResult.paymentMethodSelected(data.get(mSelectedItem));
+                }
+            };
+
+            binding.getRoot().setOnClickListener(clickListener);
+            radioButton.setOnClickListener(clickListener);
+
         }
     }
 
@@ -91,3 +108,4 @@ public class PaymentOptionsAdapter extends RecyclerView.Adapter<PaymentOptionsAd
     }
 
 }
+

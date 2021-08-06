@@ -9,14 +9,15 @@
     tools:context=".payment_options.ui.MainActivity">
 
     <TextView
-        android:id="@+id/label"
-        style="@style/TextAppearance.AppCompat.Headline"
+        android:id="@+id/textView"
+        style="@style/TextAppearance.AppCompat.Medium"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="12dp"
+        android:layout_margin="24dp"
         android:fontFamily="@font/work_sans"
-        android:text="@string/payment_methods"
+        android:text="@string/select_a_payment_method"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -24,10 +25,36 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/paymentOptionRecyclerview"
         android:layout_width="match_parent"
-        android:layout_marginBottom="12dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintBottom_toTopOf="@+id/proceedLyt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/label" />
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+
+    <LinearLayout
+        android:id="@+id/proceedLyt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:padding="18dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/proceedBtn"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:backgroundTint="@color/design_default_color_secondary"
+            android:gravity="center"
+            android:drawableEnd="@drawable/next"
+            android:text="@string/proceed"
+            app:cornerRadius="30dp" />
+
+
+    </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

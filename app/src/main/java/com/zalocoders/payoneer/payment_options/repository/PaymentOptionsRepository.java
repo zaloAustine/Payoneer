@@ -2,7 +2,6 @@ package com.zalocoders.payoneer.payment_options.repository;
 
 import com.zalocoders.payoneer.data.models.payment_options.PaymentListResponse;
 import com.zalocoders.payoneer.data.network.ApiService;
-
 import javax.inject.Inject;
 import io.reactivex.Observable;
 

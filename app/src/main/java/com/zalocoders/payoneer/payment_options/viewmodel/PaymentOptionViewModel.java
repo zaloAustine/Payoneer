@@ -15,6 +15,8 @@ import javax.inject.Inject;
 import dagger.hilt.android.lifecycle.HiltViewModel;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
+import okhttp3.ResponseBody;
+import retrofit2.Response;
 
 
 @HiltViewModel
@@ -30,6 +32,11 @@ public class PaymentOptionViewModel extends ViewModel {
     private final MutableLiveData<Boolean> loading = new MutableLiveData<>();
     public LiveData<Boolean> geLoading() {
         return loading;
+    }
+
+    private final MutableLiveData<Response<ResponseBody>> postPaymentDetailLiveData = new MutableLiveData<>();
+    public LiveData<Response<ResponseBody>> getPostPaymentLiveData(){
+        return postPaymentDetailLiveData;
     }
 
 
@@ -51,5 +58,19 @@ public class PaymentOptionViewModel extends ViewModel {
                     paymentOptions.setValue(response);
                     loading.setValue(false);
                 }, error -> Log.e("test", "getPaymentMethods: " + error.getMessage()));
+    }
+
+    @SuppressLint("CheckResult")
+    public void postPaymentDetails(String url,String body){
+        repository.postPaymentDetails(url,body)
+                .subscribeOn(Schedulers.io())
+                .doOnSubscribe(it -> {
+                    loading.postValue(true);
+                })
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(responseBodyResponse -> {
+                    postPaymentDetailLiveData.postValue(responseBodyResponse);
+                });
+
     }
 }

@@ -5,14 +5,20 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+
+import com.google.gson.Gson;
 import com.zalocoders.payoneer.data.models.payment_options.Applicable;
 import com.zalocoders.payoneer.databinding.ActivityMainBinding;
 import com.zalocoders.payoneer.payment_options.adapters.PaymentOptionsAdapter;
 import com.zalocoders.payoneer.payment_options.adapters.SelectionResult;
 import com.zalocoders.payoneer.payment_options.viewmodel.PaymentOptionViewModel;
+import com.zalocoders.payoneer.utils.Constants;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,6 +31,7 @@ public class MainActivity extends AppCompatActivity implements SelectionResult {
     private PaymentOptionViewModel viewModel;
     private PaymentOptionsAdapter adapter;
     private ArrayList<Applicable> paymentOptionList;
+    private Applicable selectedApplicable;
 
 
     @Override
@@ -38,8 +45,20 @@ public class MainActivity extends AppCompatActivity implements SelectionResult {
 
         viewModel.getPaymentOptions();
         observePaymentOptions();
-
         setUpRecyclerView();
+
+        binding.proceedBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(selectedApplicable != null){
+                    Intent intent = new Intent(MainActivity.this,PaymentFormActivity.class);
+                    String applicableString = new Gson().toJson(selectedApplicable,Applicable.class);
+                    intent.putExtra(Constants.APPLICABLE_INTENT,applicableString);
+                    startActivity(intent);
+                }
+
+            }
+        });
     }
 
     private void observePaymentOptions() {
@@ -73,6 +92,8 @@ public class MainActivity extends AppCompatActivity implements SelectionResult {
     public void paymentMethodSelected(Applicable applicable) {
         binding.proceedLyt.setVisibility(View.VISIBLE);
         binding.proceedBtn.setText(applicable.getLabel());
+        selectedApplicable = applicable;
+
     }
 
     @Override

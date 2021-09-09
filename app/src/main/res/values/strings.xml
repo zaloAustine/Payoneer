@@ -8,4 +8,5 @@
     <string name="payment_methods">Payment</string>
     <string name="select_a_payment_method">Select Payment method</string>
     <string name="proceed">Proceed</string>
+    <string name="pay">Pay</string>
 </resources>

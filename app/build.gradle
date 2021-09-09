@@ -107,12 +107,15 @@ dependencies {
     androidTestImplementation "androidx.test.espresso:espresso-core:$espressoVersion"
     androidTestImplementation "androidx.test.espresso:espresso-intents:$espressoVersion"
     androidTestImplementation "androidx.test.espresso:espresso-contrib:$espressoVersion"
+
     implementation "androidx.test.espresso:espresso-idling-resource:$espressoVersion"
+
     testImplementation "org.mockito:mockito-core:$mockitoVersion"
     androidTestImplementation "org.mockito:mockito-core:$mockitoVersion"
     androidTestImplementation "org.mockito:mockito-android:$mockitoVersion"
     testImplementation 'org.hamcrest:hamcrest-library:2.2'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
+
     testImplementation "android.arch.core:core-testing:1.1.1"
 
 

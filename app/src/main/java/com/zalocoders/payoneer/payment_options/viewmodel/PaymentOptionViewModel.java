@@ -21,10 +21,17 @@ import io.reactivex.schedulers.Schedulers;
 public class PaymentOptionViewModel extends ViewModel {
 
     private final PaymentOptionsRepository repository;
+
     private final MutableLiveData<List<Applicable>> paymentOptions = new MutableLiveData<>();
     public LiveData<List<Applicable>> gePaymentOptionList() {
         return paymentOptions;
     }
+
+    private final MutableLiveData<Boolean> loading = new MutableLiveData<>();
+    public LiveData<Boolean> geLoading() {
+        return loading;
+    }
+
 
     @Inject
     PaymentOptionViewModel(PaymentOptionsRepository repository) {
@@ -35,8 +42,14 @@ public class PaymentOptionViewModel extends ViewModel {
     public void getPaymentOptions() {
         repository.getPaymentOptions()
                 .subscribeOn(Schedulers.io())
+                .doOnSubscribe(consumer -> {
+                    loading.postValue(true);
+                })
                 .map(paymentListResponse -> paymentListResponse.getNetworks().getApplicable())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(paymentOptions::setValue, error -> Log.e("test", "getPaymentMethods: " + error.getMessage()));
+                .subscribe(response -> {
+                    paymentOptions.setValue(response);
+                    loading.setValue(false);
+                }, error -> Log.e("test", "getPaymentMethods: " + error.getMessage()));
     }
 }

@@ -49,6 +49,18 @@ public class MainActivity extends AppCompatActivity implements SelectionResult {
                 adapter.updateList((ArrayList<Applicable>) applicableList);
             }
         });
+
+        viewModel.geLoading().observe(this, new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean aBoolean) {
+                if(aBoolean){
+                    binding.progressBar.setVisibility(View.VISIBLE);
+                }else {
+                    binding.progressBar.setVisibility(View.GONE);
+
+                }
+            }
+        });
     }
 
     private void setUpRecyclerView() {
